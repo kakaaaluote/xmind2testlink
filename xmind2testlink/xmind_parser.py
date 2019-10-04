@@ -67,6 +67,14 @@ def xmind_to_suite_v2(xmind_file):
             parent.pop()
 
     def parse_suite(suite_dict):
+        """
+        Convert suite dict (kind of topic) into TestSuite object.
+
+        If one topic was not recognized as testcase, it is testsuite topic.
+
+        :param suite_dict: suite dict
+        :return: instance of TestSuite
+        """
         suite = TestSuite()
         suite.name = suite_dict['title']
         suite.details = suite_dict['note']
@@ -83,6 +91,7 @@ def xmind_to_suite_v2(xmind_file):
         return suite
 
     def parse_suite_old(suite_dict):
+        """Deprecated, use 'parse_suite' instead."""
         suite = TestSuite()
         suite.name = suite_dict['title']
         suite.details = suite_dict['note']

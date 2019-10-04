@@ -47,6 +47,21 @@ def flat_suite(suite):
     """Convert a suite object into flat testcase list."""
     tests = []
 
+    for testcase in suite.testcase_list or []:
+        d = testcase.to_dict()
+        d['suite'] = suite.name
+        tests.append(d)
+
+    for sub_suite in suite.sub_suites or []:
+        tests = tests + flat_suite(sub_suite)
+
+    return tests
+
+
+def flat_suite_old(suite):
+    """Convert a suite object into flat testcase list."""
+    tests = []
+
     for suite in suite.sub_suites:
         for test in suite.testcase_list:
             d = test.to_dict()

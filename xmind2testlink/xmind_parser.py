@@ -71,6 +71,22 @@ def xmind_to_suite_v2(xmind_file):
         suite.name = suite_dict['title']
         suite.details = suite_dict['note']
         suite.testcase_list = []
+        suite.sub_suites = []
+        sub_topics = suite_dict.get('topics', [])
+
+        for topic in sub_topics:
+            if __.is_testcase_topic(topic):
+                suite.testcase_list.append(__.parse_testcase(topic))
+            else:
+                suite.sub_suites.append(parse_suite(topic))
+
+        return suite
+
+    def parse_suite_old(suite_dict):
+        suite = TestSuite()
+        suite.name = suite_dict['title']
+        suite.details = suite_dict['note']
+        suite.testcase_list = []
         testcase_topics = suite_dict.get('topics', [])
 
         for node in testcase_topics:

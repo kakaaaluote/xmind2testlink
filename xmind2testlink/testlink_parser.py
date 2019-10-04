@@ -60,6 +60,31 @@ def should_parse(item):
 
 
 def to_testlink_xml_content(testsuite):
+    """
+    Convert TestSuite object into xml Element object, and stringify the Element object.
+
+    This function is changed for enable multi-level test suites.
+    The main process of conversion, see in function 'build_testsuite_xml'.
+
+    :param testsuite: instance of TestSuite
+    :return:
+    """
+    assert isinstance(testsuite, TestSuite)
+    cache['testcase_count'] = 0
+    testsuite.name = "placeholder"
+    root_suite_element = build_testsuite_xml(testsuite)
+    root_suite_element.set(Attributes.name, "")
+
+    tree = ElementTree.ElementTree(root_suite_element)
+    f = BytesIO()
+    tree.write(f, encoding='utf-8', xml_declaration=True)
+    return f.getvalue()
+
+
+def to_testlink_xml_content_old(testsuite):
+    """
+    Deprecated, use 'to_testlink_xml_content' instead.
+    """
     assert isinstance(testsuite, TestSuite)
     root_suite = Element(Tags.testsuite)
     root_suite.set(Attributes.name, testsuite.name)
@@ -88,8 +113,33 @@ def build_text_field(element, tag, value):
         set_text(e, value)
 
 
+def build_testsuite_xml(testsuite):
+    """
+    Convert TestSuite object into xml Element object.
+
+    :param testsuite: instance of TestSuite
+    :return: instance of Element (xml)
+    """
+    assert isinstance(testsuite, TestSuite)
+
+    if should_skip(testsuite.name):
+        return
+
+    suite_element = Element(Tags.testsuite)
+    suite_element.set(Attributes.name, testsuite.name)
+    build_text_field(suite_element, Tags.details, testsuite.details)
+    build_testcase_xml(testsuite, suite_element)
+
+    for sub_suite in testsuite.sub_suites or []:
+        sub_suite_element = build_testsuite_xml(sub_suite)
+        assert isinstance(sub_suite_element, Element)
+        suite_element.append(sub_suite_element)
+
+    return suite_element
+
+
 def build_testcase_xml(suite, suite_element):
-    for testcase in suite.testcase_list:
+    for testcase in suite.testcase_list or []:
         assert isinstance(testcase, TestCase)
 
         if should_skip(testcase.name):

@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<testsuite name="">
+	<details/>
+	<testsuite name="ui check">
+		<details>
+			<!-- -->
+<![CDATA[the note of test suite will be changed to summary / details.]]>			<!-- -->
+		</details>
+		<testcase name="verify home page">
+			<summary>
+				<!-- -->
+<![CDATA[last trail topic was not marked with priority, it will be treated as test case by default, and its priority will be set to 2]]>				<!-- -->
+			</summary>
+			<preconditions/>
+			<importance>2</importance>
+		</testcase>
+		<testsuite name="verify login page">
+			<details>
+				<!-- -->
+<![CDATA[will changed to summary part 1]]>				<!-- -->
+			</details>
+			<testcase name="url">
+				<summary/>
+				<preconditions/>
+				<execution_type>1</execution_type>
+				<importance>2</importance>
+				<steps>
+					<step>
+						<actions>
+							<!-- -->
+<![CDATA[equal to "login.example.com"]]>							<!-- -->
+						</actions>
+						<expectedresults/>
+						<execution_type>1</execution_type>
+						<step_number>1</step_number>
+					</step>
+				</steps>
+			</testcase>
+			<testcase name="layout">
+				<summary/>
+				<preconditions/>
+				<execution_type>1</execution_type>
+				<importance>3</importance>
+				<steps>
+					<step>
+						<actions>
+							<!-- -->
+<![CDATA[match design]]>							<!-- -->
+						</actions>
+						<expectedresults/>
+						<execution_type>1</execution_type>
+						<step_number>1</step_number>
+					</step>
+				</steps>
+			</testcase>
+			<testsuite name="components">
+				<details>
+					<!-- -->
+<![CDATA[will changed to summary part 2]]>					<!-- -->
+				</details>
+				<testcase name="username input">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+					<steps>
+						<step>
+							<actions>
+								<!-- -->
+<![CDATA[step ..]]>								<!-- -->
+							</actions>
+							<expectedresults>
+								<!-- -->
+<![CDATA[expected]]>								<!-- -->
+							</expectedresults>
+							<execution_type>1</execution_type>
+							<step_number>1</step_number>
+						</step>
+					</steps>
+				</testcase>
+				<testcase name="password input">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+					<steps>
+						<step>
+							<actions>
+								<!-- -->
+<![CDATA[step ...]]>								<!-- -->
+							</actions>
+							<expectedresults/>
+							<execution_type>1</execution_type>
+							<step_number>1</step_number>
+						</step>
+					</steps>
+				</testcase>
+				<testcase name="login button">
+					<summary>
+						<!-- -->
+<![CDATA[notes part 3 =&gt; summary]]>						<!-- -->
+					</summary>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+				</testcase>
+			</testsuite>
+			<testsuite name="translation">
+				<testcase name="- en">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+				</testcase>
+				<testcase name="- cn">
+					<summary/>
+					<preconditions>
+						<!-- -->
+<![CDATA[comments part 3=&gt; precondition]]>						<!-- -->
+					</preconditions>
+					<execution_type>1</execution_type>
+					<importance>2</importance>
+				</testcase>
+			</testsuite>
+			<testsuite name="action =">
+				<testcase name="valid name +  valid password">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+					<steps>
+						<step>
+							<actions>
+								<!-- -->
+<![CDATA[step 1]]>								<!-- -->
+							</actions>
+							<expectedresults/>
+							<execution_type>1</execution_type>
+							<step_number>1</step_number>
+						</step>
+						<step>
+							<actions>
+								<!-- -->
+<![CDATA[step 2]]>								<!-- -->
+							</actions>
+							<expectedresults>
+								<!-- -->
+<![CDATA[expected]]>								<!-- -->
+							</expectedresults>
+							<execution_type>1</execution_type>
+							<step_number>2</step_number>
+						</step>
+					</steps>
+				</testcase>
+				<testcase name="valid name + bad password">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>3</importance>
+				</testcase>
+				<testcase name="bad name + bad password">
+					<summary/>
+					<preconditions/>
+					<execution_type>1</execution_type>
+					<importance>2</importance>
+				</testcase>
+			</testsuite>
+		</testsuite>
+	</testsuite>
+	<testsuite name="db check">
+		<testsuite name="verify users table">
+			<testcase name="schema">
+				<summary/>
+				<preconditions/>
+				<importance>2</importance>
+			</testcase>
+			<testcase name="functions">
+				<summary>
+					<!-- -->
+<![CDATA[If the trail topic was not marked with priority, it will be treated as a test case by default, and its priority will be set to 2]]>					<!-- -->
+				</summary>
+				<preconditions/>
+				<importance>2</importance>
+			</testcase>
+		</testsuite>
+	</testsuite>
+</testsuite>

@@ -1,0 +1,160 @@
+[
+  {
+    "name": "verify home page",
+    "summary": "last trail topic was not marked with priority, it will be treated as test case by default, and its priority will be set to 2",
+    "preconditions": "",
+    "importance": 2,
+    "execution_type": null,
+    "steps": [],
+    "suite": "ui check"
+  },
+  {
+    "name": "url",
+    "summary": "",
+    "preconditions": "",
+    "importance": 2,
+    "execution_type": 1,
+    "steps": [
+      {
+        "number": 1,
+        "action": "equal to \"login.example.com\"",
+        "expected": "",
+        "execution_type": 1
+      }
+    ],
+    "suite": "verify login page"
+  },
+  {
+    "name": "layout",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [
+      {
+        "number": 1,
+        "action": "match design",
+        "expected": "",
+        "execution_type": 1
+      }
+    ],
+    "suite": "verify login page"
+  },
+  {
+    "name": "username input",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [
+      {
+        "number": 1,
+        "action": "step ..",
+        "expected": "expected",
+        "execution_type": 1
+      }
+    ],
+    "suite": "components"
+  },
+  {
+    "name": "password input",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [
+      {
+        "number": 1,
+        "action": "step ...",
+        "expected": "",
+        "execution_type": 1
+      }
+    ],
+    "suite": "components"
+  },
+  {
+    "name": "login button",
+    "summary": "notes part 3 => summary",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [],
+    "suite": "components"
+  },
+  {
+    "name": "- en",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [],
+    "suite": "translation"
+  },
+  {
+    "name": "- cn",
+    "summary": "",
+    "preconditions": "comments part 3=> precondition",
+    "importance": 2,
+    "execution_type": 1,
+    "steps": [],
+    "suite": "translation"
+  },
+  {
+    "name": "valid name +  valid password",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [
+      {
+        "number": 1,
+        "action": "step 1",
+        "expected": "",
+        "execution_type": 1
+      },
+      {
+        "number": 2,
+        "action": "step 2",
+        "expected": "expected",
+        "execution_type": 1
+      }
+    ],
+    "suite": "action ="
+  },
+  {
+    "name": "valid name + bad password",
+    "summary": "",
+    "preconditions": "",
+    "importance": 1,
+    "execution_type": 1,
+    "steps": [],
+    "suite": "action ="
+  },
+  {
+    "name": "bad name + bad password",
+    "summary": "",
+    "preconditions": "",
+    "importance": 2,
+    "execution_type": 1,
+    "steps": [],
+    "suite": "action ="
+  },
+  {
+    "name": "schema",
+    "summary": "",
+    "preconditions": "",
+    "importance": 2,
+    "execution_type": null,
+    "steps": [],
+    "suite": "verify users table"
+  },
+  {
+    "name": "functions",
+    "summary": "If the trail topic was not marked with priority, it will be treated as a test case by default, and its priority will be set to 2",
+    "preconditions": "",
+    "importance": 2,
+    "execution_type": null,
+    "steps": [],
+    "suite": "verify users table"
+  }
+]

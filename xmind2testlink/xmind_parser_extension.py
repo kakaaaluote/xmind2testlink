@@ -16,15 +16,22 @@ class TestcaseMarker(object):
     def __init__(self, xmind):
         self.xmind = xmind
 
-    def replace_content_xml(self):
+    # TODO: 1. 图片丢失；2. xhtml及其他的namespace都消失了，只有xmlns:html；3. 所有的xhtmltag都变成html了
+    def overwrite_content_xml(self):
         temp_dir = tempfile.mkdtemp()
 
         with ZipFile(self.xmind, 'r') as zip:
             zip.extract("content.xml", temp_dir)
-        temp_full_file_name = os.path.join(temp_dir, 'content.xml')
 
+        temp_full_file_name = os.path.join(temp_dir, 'content.xml')
         root = self.get_content_xml_root_element(temp_full_file_name)
-        self.mark_testcase(root)
+        root_topic_element = root.find('./sheet/topic')
+
+        if root_topic_element is None:
+            raise ValueError("找不到根节点，请确认！！")
+
+        self.find_and_mark_testcase(root_topic_element)
+
         tree = ET.ElementTree(root)
         tree.write(temp_full_file_name, encoding='utf-8', xml_declaration=True)
 
@@ -41,14 +48,6 @@ class TestcaseMarker(object):
         root = ET.fromstring(xml_string)
 
         return root
-
-    def mark_testcase(self, root):
-        root_topic_element = root.find('./sheet/topic')
-
-        if root_topic_element is None:
-            raise ValueError("找不到根节点，请确认！！")
-
-        self.find_and_mark_testcase(root_topic_element)
 
     def find_and_mark_testcase(self, topic_element):
         if self.is_testcase_topic(topic_element):
@@ -211,6 +210,7 @@ class UpdateableZipFile(ZipFile):
         finally:
             shutil.rmtree(tempdir)
 
+
 if __name__ == '__main__':
     marker = TestcaseMarker('../tests/test_zipfile/s.xmind')
-    marker.replace_content_xml()
+    marker.overwrite_content_xml()

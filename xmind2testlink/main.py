@@ -17,6 +17,7 @@ import sys
 
 from xmind2testlink.testlink_parser import to_testlink_xml_file
 from xmind2testlink.xmind_parser import xmind_to_suite, xmind_to_flat_dict
+from xmind2testlink.xmind_parser_extension import TestcaseMarker
 
 
 def xmind_to_testlink(xmind):
@@ -34,6 +35,11 @@ def xmind_to_json(xmind):
     return json_out
 
 
+def overwrite_content_xml(xmind):
+    marker = TestcaseMarker(xmind)
+    marker.overwrite_content_xml()
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1].endswith('.xmind'):
         xmind = sys.argv[1]
@@ -49,4 +55,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+     main()

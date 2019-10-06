@@ -8,7 +8,7 @@ import arrow
 from flask import Flask, request, send_from_directory, g, render_template, abort, redirect, url_for
 from werkzeug.utils import secure_filename
 
-from xmind2testlink.main import xmind_to_suite, xmind_to_testlink
+from xmind2testlink.main import xmind_to_suite, xmind_to_testlink, overwrite_content_xml
 from xmind2testlink.sharedparser import flat_suite
 
 UPLOAD_FOLDER = './uploads'
@@ -114,7 +114,9 @@ def allowed_file(filename):
 
 
 def check_file_name(name):
-    secured = secure_filename(name)
+    # Chinese characters will be ignored if secure_filename() used.
+    # secured = secure_filename(name)
+    secured = name
     if not secured:
         secured = re.sub('[^\w\d]+', '_', name)  # only keep letters and digits from file name
         assert secured, 'Unable to parse file name: {}!'.format(name)
@@ -192,6 +194,7 @@ def download_file(filename):
     if not exists(full_path):
         abort(404)
 
+    overwrite_content_xml(full_path)
     xmind_to_testlink(full_path)
 
     filename = filename[:-5] + 'xml'

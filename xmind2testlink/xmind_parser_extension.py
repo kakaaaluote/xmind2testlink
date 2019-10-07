@@ -11,10 +11,9 @@ import xml.etree.ElementTree as ET
 
 class TestcaseMarker(object):
 
-    MATCH_CHAR_LIST = ['F-', 'E-']
-
     def __init__(self, xmind):
         self.xmind = xmind
+        self.match_chars_list = []
 
     # TODO: 1. 图片丢失；2. xhtml及其他的namespace都消失了，只有xmlns:html；3. 所有的xhtmltag都变成html了
     def overwrite_content_xml(self):
@@ -30,6 +29,12 @@ class TestcaseMarker(object):
         if root_topic_element is None:
             raise ValueError("找不到根节点，请确认！！")
 
+        self.get_match_chars_list(root_topic_element)
+
+        if len(self.match_chars_list) == 0:
+            shutil.rmtree(temp_dir)
+            return
+
         self.find_and_mark_testcase(root_topic_element)
 
         tree = ET.ElementTree(root)
@@ -39,6 +44,13 @@ class TestcaseMarker(object):
             o.write(temp_full_file_name, "content.xml")
 
         shutil.rmtree(temp_dir)
+
+    def get_match_chars_list(self, root_topic_element):
+        assert isinstance(root_topic_element, ET.Element)
+        label_element = root_topic_element.find('./labels/label')
+
+        if label_element is not None:
+            self.match_chars_list = label_element.text.split()
 
     def get_content_xml_root_element(self, xml_file):
         with open(xml_file, encoding='utf-8') as f:
@@ -64,7 +76,7 @@ class TestcaseMarker(object):
 
         if title_element is not None and title_element.text:
             title = title_element.text
-            for chars in self.MATCH_CHAR_LIST:
+            for chars in self.match_chars_list:
                 if title.startswith(chars):
                     return True
 

@@ -133,6 +133,7 @@ def save_file(file):
             upload_to = join(app.config['UPLOAD_FOLDER'], filename)
 
         file.save(upload_to)
+        overwrite_content_xml(upload_to)
         insert_record(filename)
         g.is_success = True
         return filename
@@ -194,7 +195,6 @@ def download_file(filename):
     if not exists(full_path):
         abort(404)
 
-    overwrite_content_xml(full_path)
     xmind_to_testlink(full_path)
 
     filename = filename[:-5] + 'xml'
